@@ -20,10 +20,6 @@ namespace Integrator {
     int num_interp_points = 10;
     T::data_t interpolation_inc = 1.0 / num_interp_points;
 
-    T::field_t cur_wf = {0.0, 0.0, 0.0};
-    T::point_3d_t cur_pt = {0.0, 0.0, 0.0};
-    T::data_t signal = 0;
-
     // interpolate trajectory onto finer grid
     // - - - - - - - - - - - - - - - - - - - - - - 
     // in the real case with a discretised weighting field, need to replace this with the computation of all intersection points
@@ -72,6 +68,7 @@ namespace Integrator {
     }
 
     // perform the integration
+    T::data_t signal = 0;
     for(int ind = 0; ind < integrand.size() - 1; ind++) {
       T::data_t val_l = integrand[ind];
       T::data_t val_r = integrand[ind + 1];
