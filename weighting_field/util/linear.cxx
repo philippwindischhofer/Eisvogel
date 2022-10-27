@@ -11,8 +11,8 @@ namespace T = Types;
 
 int main(void) {
 
-  T::data_t start_time = -100;
-  T::data_t end_time = 100;
+  T::data_t start_time = -1000;
+  T::data_t end_time = 1000;
   T::data_t x_velocity = 0.1;
   T::data_t z_offset = 1;
 
@@ -34,7 +34,7 @@ int main(void) {
 
   std::vector<T::data_t> signal_times;
   std::vector<T::data_t> signal_values;
-  for(T::data_t cur_time = -10; cur_time < 10; cur_time += 1) {
+  for(T::data_t cur_time = -20; cur_time < 20; cur_time += 1) {
     signal_times.push_back(cur_time);
     T::data_t cur_signal = INT::convolve(cur_time, trajectory, velocity, charge, weighting_field);
     signal_values.push_back(cur_signal);

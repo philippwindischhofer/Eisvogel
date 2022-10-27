@@ -25,7 +25,7 @@ namespace WeightingFieldProvider {
     T::data_t eps0 = 1.0;
     T::data_t n = 1.0;
     T::data_t ds = 1.0;
-    T::data_t c = 1.0;
+    T::data_t c = 10000.0;
 
     T::data_t t = eval_t;
     T::data_t x = eval_point[0];
@@ -45,7 +45,7 @@ namespace WeightingFieldProvider {
     T::data_t E_theta = -Qw * ds / (eps0 * 4 * M_PI) * sin_theta / std::pow(r, 3) * (
 										     theta(t_del)
 										     + t_prop * dirac_delta(t_del, disc_delta)
-										     + std::pow(t_prop, 2) * dirac_delta_prime(t_prop, disc_delta)
+										     + std::pow(t_prop, 2) * dirac_delta_prime(t_del, disc_delta)
 										     );
     T::data_t E_r = -2.0 * Qw * ds / (eps0 * 4 * M_PI) * cos_theta / std::pow(r, 3) * (
 										       theta(t_del)
