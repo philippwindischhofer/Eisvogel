@@ -17,8 +17,8 @@ namespace WeightingFieldProvider {
     return std::abs(x) < disc_delta ? std::copysign(1.0, x) / std::pow(disc_delta, 2) : 0.0;
   }
 
-  void getElectricDipoleWeightingField(T::data_t eval_t, T::point_3d_t& eval_point, T::field_t& weighting_field, 
-				       T::data_t disc_delta) {
+  void getElectricDipoleWeightingField(const T::data_t eval_t, const T::point_3d_t& eval_point, T::field_t& weighting_field, 
+				       const T::data_t disc_delta) {
 
     // some constants ... need to be defined elsewhere in the longer term
     T::data_t Qw = 1.0;
