@@ -9,8 +9,11 @@ namespace Integrator {
 
   namespace T = Types;
 
-  void convolve(std::vector<T::point_t>& trajectory, std::vector<T::data_t>& charge, std::vector<T::data_t>& signal,
-		std::function<void(T::point_t&, T::field_t&)> weighting_field);
+  
+
+  T::data_t convolve(T::data_t signal_t,
+		     std::vector<T::point_4d_t>& trajectory, std::vector<T::vector_t>& velocity, std::vector<T::data_t>& charge,
+		     std::function<void(T::data_t, T::point_3d_t&, T::field_t&)> weighting_field);
 }
 
 #endif
