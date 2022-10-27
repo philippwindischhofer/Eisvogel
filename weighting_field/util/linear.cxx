@@ -11,25 +11,30 @@ namespace T = Types;
 
 int main(void) {
 
+  T::data_t start_time = -100;
+  T::data_t end_time = 100;
+  T::data_t x_velocity = 0.1;
+  T::data_t z_offset = 1;
+
   std::vector<T::point_4d_t> trajectory = {
-    {0, -10, 0, 1},
-    {1, 0, 0, 1},
-    {2, 10, 0, 1}
+    {start_time, start_time * x_velocity, 0, z_offset},
+    {0, 0, 0, z_offset},
+    {end_time, end_time * x_velocity, 0, z_offset}
   };
   std::vector<T::vector_t> velocity = {
-    {10, 0, 0},
-    {10, 0, 0},
-    {10, 0, 0}
+    {x_velocity, 0, 0},
+    {x_velocity, 0, 0},
+    {x_velocity, 0, 0}
   };
   std::vector<T::data_t> charge = {
     1, 1, 1
   };
 
-  auto weighting_field = [](const T::data_t t, const T::point_3d_t& p, T::field_t& f) -> void {WFP::getElectricDipoleWeightingField(t, p, f, 1.0);};
+  auto weighting_field = [](const T::data_t t, const T::point_3d_t& p, T::field_t& f) -> void {WFP::getElectricDipoleWeightingField(t, p, f, 0.02);};
 
   std::vector<T::data_t> signal_times;
   std::vector<T::data_t> signal_values;
-  for(T::data_t cur_time = -10; cur_time < 10; cur_time += 0.1) {
+  for(T::data_t cur_time = -10; cur_time < 10; cur_time += 1) {
     signal_times.push_back(cur_time);
     T::data_t cur_signal = INT::convolve(cur_time, trajectory, velocity, charge, weighting_field);
     signal_values.push_back(cur_signal);
