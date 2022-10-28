@@ -10,11 +10,13 @@ namespace WeightingFieldProvider {
   }
 
   T::data_t dirac_delta(T::data_t x, T::data_t disc_delta) {
-    return std::fabs(x) < disc_delta ? 0.5 / disc_delta : 0.0;
+    // return std::fabs(x) < disc_delta ? 0.5 / disc_delta : 0.0;
+    return 1.0 / (disc_delta * std::sqrt(M_PI)) * std::exp(-std::pow(x / disc_delta, 2));
   }
 
   T::data_t dirac_delta_prime(T::data_t x, T::data_t disc_delta) {
-    return std::fabs(x) < disc_delta ? std::copysign(1.0, x) / std::pow(disc_delta, 2) : 0.0;
+    // return std::fabs(x) < disc_delta ? std::copysign(1.0, x) / std::pow(disc_delta, 2) : 0.0;
+    return -2.0 * x / (std::pow(disc_delta, 3) * std::sqrt(M_PI)) * std::exp(-std::pow(x / disc_delta, 2));
   }
 
   void getElectricDipoleWeightingField(const T::data_t eval_t, const T::point_3d_t& eval_point, T::field_t& weighting_field, 
@@ -25,7 +27,7 @@ namespace WeightingFieldProvider {
     T::data_t eps0 = 1.0;
     T::data_t n = 1.0;
     T::data_t ds = 1.0;
-    T::data_t c = 10000.0;
+    T::data_t c = 1.0;
 
     T::data_t t = eval_t;
     T::data_t x = eval_point[0];
