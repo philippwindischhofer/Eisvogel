@@ -19,7 +19,7 @@ namespace Integrator {
     assert(trajectory.size() == velocity.size());
     assert(trajectory.size() == charge.size());
     
-    int num_interp_points = 10000000;
+    int num_interp_points = 10000;
     T::data_t interpolation_inc = 1.0 / num_interp_points;
 
     // interpolate trajectory onto finer grid
